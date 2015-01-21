@@ -1,13 +1,26 @@
-if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+Tasks = new Mongo.Collection("tasks");
 
+if (Meteor.isClient) {
+  
   Template.body.helpers({
-    tasks: [
-      {text: "This is task 1"},
-      {text: "This is task 2"},
-      {text: "This is task 3"}
-    ]
+    tasks: function() {
+      return Tasks.find({});
+    }
+  });
+
+  Template.body.events({
+    "submit .new-task": function(event) {
+      var texto = event.target.text;
+
+      Tasks.insert({
+        text: texto.value,
+        createdAt: new Date()
+      });
+
+      texto.value = "";
+
+      return false;
+    }
   });
 }
 
