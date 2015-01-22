@@ -20,6 +20,16 @@ if (Meteor.isClient) {
       texto.value = "";
 
       return false;
+    },
+  });
+
+  Template.task.events({
+    "click .delete": function() {
+      Tasks.remove(this._id);
+    },
+
+    "click .toggle-checked": function() {
+      Tasks.update(this._id, {$set:{checked: !this.checked}});
     }
   });
 }
