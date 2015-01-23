@@ -12,9 +12,12 @@
 	    		Ocultar tareas cumplidas.
 	    	</label>
 
+	    	{{> loginButtons}}
+			{{#if currentUser}}
 	    	<form class="new-task">
 	    		<input type="text" name="text" placeholder="Escribe para añadir una nueva entrada" />
 	    	</form>
+	    	{{/if}}
 	    </header>
 	  
 	    <ul>
@@ -31,6 +34,6 @@
 
   	<input type="checkbox" checked="{{checked}}" class="toggle-checked" />
   	
-  	<span class="text">{{text}}</span>
+  	<span class="text"> <strong>{{username}}</strong> {{text}}</span>
   </li>
 </template>

@@ -21,7 +21,9 @@ if (Meteor.isClient) {
 
       Tasks.insert({
         text: texto.value,
-        createdAt: new Date()
+        createdAt: new Date(),
+        owner: Meteor.userId(),
+        username: Meteor.user().username
       });
 
       texto.value = "";
@@ -46,5 +48,10 @@ if (Meteor.isClient) {
         itasks.style.backgroundColor = '';
       }, 200);
     }
+  });
+
+  //Configuracion de la interfaz de cuentas de usuarios.-
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
   });
 }
