@@ -42,6 +42,11 @@ h1 {
   display: inline-block;
   margin-right: 1em;
 }
+h1 span {
+  font-size: 0.8em;
+  
+  color:#555;
+}
 
 form {
   margin-top: 10px;

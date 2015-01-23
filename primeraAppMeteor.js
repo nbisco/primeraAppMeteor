@@ -10,6 +10,9 @@ if (Meteor.isClient) {
         return Tasks.find({}, {sort: {createdAt: -1}});
       }
     },
+    incompleteTasks: function() {
+      return Tasks.find({checked: {$ne: true}}).count();
+    }
   });
 
   Template.body.events({
@@ -36,7 +39,12 @@ if (Meteor.isClient) {
     },
 
     "click .toggle-checked": function() {
+      var itasks = document.getElementById('iTasks');
       Tasks.update(this._id, {$set:{checked: !this.checked}});
+      itasks.style.backgroundColor = 'red';
+      setTimeout(function() {
+        itasks.style.backgroundColor = '';
+      }, 200);
     }
   });
 }
